@@ -4,16 +4,15 @@
 
 // Config
 angular.module('angularInputex.config', [])
-    .value('angularInputex.config', {
-        debug: true
-    });
+  .value('angularInputex.config', {
+    debug: true
+  });
 
 // Modules
 angular.module('angularInputex.directives', []);
 angular.module('angularInputex.filters', []);
-angular.module('angularInputex',
-    [
-        'angularInputex.config',
-        'angularInputex.directives',
-        'angularInputex.filters'
-    ]);
+angular.module('angularInputex', [
+  'angularInputex.config',
+  'angularInputex.directives',
+  'angularInputex.filters'
+]);

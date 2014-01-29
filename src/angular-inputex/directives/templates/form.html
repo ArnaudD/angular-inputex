@@ -1,0 +1,9 @@
+
+<div class="ix-form" ng-repeat="field in fields">
+
+  <div class="ix-field-wrapper form-group">
+    <label for="ix-{{ field.name }}">{{ field.label }}</label>
+    <div ix-field="field" ix-model="model[field.name]"></div>
+  </div>
+
+</div>
