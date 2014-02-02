@@ -29,7 +29,7 @@ module.exports = function(grunt) {
     },
     html2js: {
       options: {
-        module: 'angularInputex.templates',
+        module: 'ix.templates',
         base: 'src'
       },
       main: {

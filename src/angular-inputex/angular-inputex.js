@@ -3,16 +3,16 @@
 // before all nested files are concatenated by Grunt
 
 // Config
-angular.module('angularInputex.config', [])
-  .value('angularInputex.config', {
+angular.module('ix.config', [])
+  .value('ix.config', {
     debug: true
   });
 
 // Modules
-angular.module('angularInputex.directives', []);
-angular.module('angularInputex.filters', []);
-angular.module('angularInputex', [
-  'angularInputex.config',
-  'angularInputex.directives',
-  'angularInputex.filters'
+angular.module('ix.directives', []);
+angular.module('ix.filters', []);
+angular.module('ix', [
+  'ix.config',
+  'ix.directives',
+  'ix.filters'
 ]);
