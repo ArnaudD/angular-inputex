@@ -3,8 +3,8 @@ angular.module('ix')
   .directive('ixCapitalize', function ($compile) {
     return {
       require: 'ngModel',
-      link: function(scope, element, attrs, modelCtrl) {
-        var capitalize = function(inputValue) {
+      link: function (scope, element, attrs, modelCtrl) {
+        var capitalize = function (inputValue) {
           if (angular.isUndefined(inputValue)) {
             return;
           }

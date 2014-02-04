@@ -13,9 +13,9 @@ angular.module('ix')
       validate:    ['attr', 'pattern']
     };
 
-    var compile = function(element, attrs) {
+    var compile = function (element, attrs) {
 
-      element.removeAttr("ix-type-string");
+      element.removeAttr('ix-type-string');
 
       return {
         pre: function preLink(scope, element, attrs, controller) {
