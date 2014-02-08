@@ -1,6 +1,6 @@
 var gulp       = require('gulp'),
     gutil      = require('gulp-util'),
-    html2js    = require('gulp-html2js'),
+    html2js    = require('gulp-ng-html2js'),
     concat     = require('gulp-concat'),
     uglify     = require("gulp-uglify"),
     rename     = require("gulp-rename"),
@@ -34,7 +34,10 @@ gulp.task('build', function() {
 
 gulp.task('templates', function() {
   gulp.src(paths.html)
-    .pipe(html2js())
+    .pipe(html2js({
+      moduleName: 'ix.templates',
+      prefix: 'angular-inputex/directives/templates/'
+    }))
     .pipe(concat('angular-inputex-templates.js'))
     .pipe(gulp.dest(paths.dist))
     // uglify
