@@ -1,0 +1,1 @@
+"use strict";angular.module("demoApp",["ngSanitize","ngRoute","ix","ix.templates"]),angular.module("demoApp").directive("code",function(){return{restrict:"A",priority:2e3,link:function(a,b){b.text(b.html()),Rainbow.color()}}});
