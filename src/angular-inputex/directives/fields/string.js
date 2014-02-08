@@ -10,7 +10,8 @@ angular.module('ix')
       typeInvite:  ['attr', 'placeholder'],
       trim:        ['prop', 'ng-trim'],
       name:        ['attr', 'name'],
-      validate:    ['attr', 'pattern']
+      validate:    ['attr', 'pattern'],
+      value:       ['attr', 'value']
     };
 
     var compile = function (element, attrs) {
@@ -19,13 +20,20 @@ angular.module('ix')
 
       return {
         pre: function preLink(scope, element, attrs, controller) {
-          var field = scope.$parent.field;
+          var field = scope.field || scope.$parent.field;
 
           for (var key in propertiesTranslations) {
             if (propertiesTranslations.hasOwnProperty(key) && field.hasOwnProperty(key)) {
               var value = propertiesTranslations[key];
               element[value[0]](value[1], field[key]);
             }
+          }
+                    
+          if (scope.model) {
+            element.attr('value', scope.model);
+          }
+          else if (field.hasOwnProperty('value')) {
+            scope.model = field.value;
           }
 
           attrs.$set('ng-model', 'model');
