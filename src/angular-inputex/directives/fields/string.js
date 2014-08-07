@@ -7,6 +7,8 @@ angular.module('ix')
       minLength:   ['attr', 'ng-minlength'],
       maxLength:   ['attr', 'ng-maxlength'],
       placeholder: ['attr', 'placeholder'],
+      uppercase:   ['attr', 'ix-uppercase'],
+      capitalize:  ['attr', 'ix-capitalize'],
       typeInvite:  ['attr', 'placeholder'],
       trim:        ['prop', 'ng-trim'],
       name:        ['attr', 'name'],
@@ -17,9 +19,10 @@ angular.module('ix')
     var compile = function (element, attrs) {
 
       element.removeAttr('ix-type-string');
+      attrs.$set('ngModel', 'model');
 
       return {
-        pre: function preLink(scope, element, attrs, controller) {
+        pre: function preLink(scope, element, attrs, modelCtrl) {
           var field = scope.field || scope.$parent.field;
 
           for (var key in propertiesTranslations) {
@@ -29,14 +32,13 @@ angular.module('ix')
             }
           }
                     
-          if (scope.model) {
-            element.attr('value', scope.model);
-          }
-          else if (field.hasOwnProperty('value')) {
-            scope.model = field.value;
-          }
+          // if (scope.model) {
+          //   attrs.$set('value', scope.model);
+          // }
+          // else if (field.hasOwnProperty('value')) {
+          //   scope.model = field.value;
+          // }
 
-          attrs.$set('ng-model', 'model');
         },
         post: function postLink(scope, element, attrs, controller) {
           $compile(element)(scope);
@@ -46,6 +48,7 @@ angular.module('ix')
 
     return {
       restrict: 'A',
+      // require: '^ngModel',
       terminal: true,
       priority: 1000,
       compile: compile

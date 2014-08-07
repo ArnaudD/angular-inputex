@@ -32,59 +32,47 @@
     </div>
 
     <div class="container">
-      <script>
-        function StringFieldController ($scope) {
-          $scope.fieldDefinition = {
-            "type": "string",
-            "label": "Nom",
-            "uppercase": true,
-            "value": "test",
-            "name": "lastname",
-            "maxLength": "10",
-            "minLength": "3",
-            "size": 40,
-            "required": true,
-            "trim": true
+
+      <div class="test-form" ng-controller="FormTestController">
+        <script>
+          function FormTestController ($scope) {
+            $scope.fields = [
+               { type: "string",      label: "Test string",      name: "string",      maxLength: "10", minLength: "3", size: 40, required: true, trim: true }
+              ,{ type: "uppercase",   label: "Test uppercase",   name: "uppercase",   maxLength: "10", minLength: "3", size: 40, required: true, trim: true }
+              // ,{ type: "text",        label: "Test text",        name: "text",        maxLength: "10", minLength: "3", size: 40, required: true, trim: true }
+              // ,{ type: "select",      label: "Test select",      name: "select",      maxLength: "10", minLength: "3", size: 40, required: true, trim: true }
+              // ,{ type: "linkedcombo", label: "Test linkedcombo", name: "linkedcombo", maxLength: "10", minLength: "3", size: 40, required: true, trim: true }
+              // ,{ type: "boolean",     label: "Test boolean",     name: "boolean",     maxLength: "10", minLength: "3", size: 40, required: true, trim: true }
+              // ,{ type: "radio",       label: "Test radio",       name: "radio",       maxLength: "10", minLength: "3", size: 40, required: true, trim: true }
+              // ,{ type: "integer",     label: "Test integer",     name: "integer",     maxLength: "10", minLength: "3", size: 40, required: true, trim: true }
+              // ,{ type: "datesplit",   label: "Test datesplit",   name: "datesplit",   maxLength: "10", minLength: "3", size: 40, required: true, trim: true }
+            ];
+
+            $scope.values = {
+              'string':      'Default string value',
+              'uppercase':   'Default uppercase value',
+              'text':        'Default text value',
+              'select':      'Default select value',
+              'linkedcombo': 'Default linkedcombo value',
+              'boolean':     'Default boolean value',
+              'radio':       'Default radio value',
+              'integer':     'Default integer value',
+              'datesplit':   'Default datesplit value'
+            }
           }
+        </script>
 
-          $scope.value = "world";
-        }
-      </script>
+        <h2>Test Form</h2>
 
-      <div class="row marketing" ng-controller="StringFieldController">
-        <h2>String field</h2>
+        <form name="testForm2" ix-form="fields" ix-form-model="values"></form>
+        <!-- <input type="text" ng-model="values.uppercase" ng-maxlength="10" ix-uppercase/> -->
+        <!-- <input type="text" ng-model="values.uppercase" ng-maxlength="10" /> -->
 
-        <pre><code data-language="js">
-          $scope.fieldDefinition = {
-            "type": "string",
-            "label": "Nom",
-            "uppercase": true,
-            "placeholder": "Nom",
-            "value": "test",
-            "name": "lastname",
-            "maxLength": "10",
-            "minLength": "3",
-            "size": 40,
-            "required": true,
-            "trim": true
-          }
+        <p>Values: <pre>{{ values | json }}</pre></p>
 
-          $scope.value = "world";
-        </code></pre>
-
-        <pre><code data-language="html" ng-non-bindable>
-          <form name="testForm" >
-            <div ix-field="fieldDefinition" ix-model="value"></div>
-          </form>
-
-      </code></pre>
-        <form name="testForm">
-          <div ix-field="fieldDefinition" ix-model="value"></div>
-        </form>
-
-        <p>Hello {{ value }}</p>
       </div>
-    </div>
+
+
 
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->

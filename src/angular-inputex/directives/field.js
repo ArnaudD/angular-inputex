@@ -8,9 +8,9 @@ angular.module('ix')
     };
 
     var linker = function (scope, element, attrs) {
-      var html = getTemplate(scope.field.type),
-          input = angular.element(html),
-          field = scope.field;
+      var field = scope.field,
+          html  = getTemplate(field.type),
+          input = angular.element(html);
 
       element.append(input);
       $compile(input)(scope);
@@ -22,6 +22,18 @@ angular.module('ix')
         field: '=ixField',
         model: '=ixModel'
       },
+      terminal: true,
+      priority: 1000,
       link: linker
+      // compile: function (element, attrs) {
+      //   return {
+      //     pre: function (scope, element, attrs) {
+
+      //     },
+      //     post: function (scope,element, attrs) {
+
+      //     }
+      //   }
+      // }
     };
   });

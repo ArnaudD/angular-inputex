@@ -8,18 +8,18 @@ angular.module('ix')
             return;
           }
 
-          var uppercased = inputValue.toUpperCase();
+          var uppercased = angular.uppercase(inputValue);
 
           if (uppercased !== inputValue) {
             modelCtrl.$setViewValue(uppercased);
             modelCtrl.$render();
           }
-          
+
           return uppercased;
         };
 
         modelCtrl.$parsers.push(uppercase);
-        uppercase(scope[attrs.ngModel]); // uppercase initial value
+        modelCtrl.$formatters.push(uppercase);
       }
     };
   });

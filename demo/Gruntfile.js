@@ -276,14 +276,23 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           dot: true,
-          cwd: '<%= yeoman.app %>',
+          cwd: './app',
           dest: '<%= yeoman.dist %>',
           src: [
             '*.{ico,png,txt}',
             '.htaccess',
             '*.html',
             'views/{,*/}*.html',
-            'bower_components/**/*',
+            'bower_components/sass-bootstrap/dist/css/bootstrap.css',
+            'bower_components/es5-shim/es5-shim.js',
+            'bower_components/json3/lib/json3.min.js',
+            'bower_components/jquery/jquery.js',
+            'bower_components/angular/angular.js',
+            'bower_components/sass-bootstrap/dist/js/bootstrap.js',
+            'bower_components/angular-sanitize/angular-sanitize.js',
+            'bower_components/angular-route/angular-route.js',
+            'bower_components/angular-inputex/dist/angular-inputex.js',
+            'bower_components/angular-inputex/dist/angular-inputex-templates.js',
             'images/{,*/}*.{webp}',
             'fonts/*'
           ]

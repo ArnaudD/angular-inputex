@@ -8,7 +8,7 @@ angular.module('ix')
           if (angular.isUndefined(inputValue)) {
             return;
           }
-          
+
           var capitalized = inputValue.charAt(0).toUpperCase() +
               inputValue.substring(1);
 
@@ -21,7 +21,7 @@ angular.module('ix')
         };
 
         modelCtrl.$parsers.push(capitalize);
-        capitalize(scope[attrs.ngModel]); // capitalize initial value
+        modelCtrl.$formatters.push(capitalize);
       }
     };
   });

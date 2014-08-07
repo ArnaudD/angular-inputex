@@ -6,7 +6,7 @@ angular.module('ix')
       transclude: true,
       scope: {
         fields: '=ixForm',
-        model:  '=ixModel'
+        model:  '=ixFormModel'
       },
       templateUrl: 'angular-inputex/directives/templates/form.html'
     };
