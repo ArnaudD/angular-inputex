@@ -6,7 +6,8 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('angular-inputex/directives/templates/capitalize.html',
-    '<input type="text" ix-type-string ix-capitalize />');
+    '<input type="text" ix-type-string ix-capitalize  class="form-control" />\n' +
+    '');
 }]);
 })();
 
@@ -33,7 +34,8 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('angular-inputex/directives/templates/email.html',
-    '<input type="email" ix-type-string ix-type-email />');
+    '<input type="email" ix-type-string ix-type-email class="form-control"/>\n' +
+    '');
 }]);
 })();
 
@@ -46,16 +48,17 @@ try {
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('angular-inputex/directives/templates/form.html',
     '\n' +
-    '<div class="ix-form">\n' +
+    '<div class="ix-form form">\n' +
     '\n' +
     '  <div class="ix-field-wrapper form-group" ng-repeat="field in fields" ng-form name="subForm">\n' +
-    '    <label for="ix-{{ field.name }}">{{ field.label }}</label>\n' +
+    '    <label for="ix-{{ field.name }}" class="control-label">{{ field.label }}</label>\n' +
     '    <div ix-field="field" ix-model="model[field.name]"></div>\n' +
     '  </div>\n' +
     '\n' +
     '</div>\n' +
     '\n' +
-    '<div ng-transclude></div>');
+    '<div ng-transclude></div>\n' +
+    '');
 }]);
 })();
 
@@ -79,7 +82,8 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('angular-inputex/directives/templates/password.html',
-    '<input type="password" ix-type-string />');
+    '<input type="password" ix-type-string class="form-control"/>\n' +
+    '');
 }]);
 })();
 
@@ -115,7 +119,8 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('angular-inputex/directives/templates/string.html',
-    '<input type="text" ix-type-string/>');
+    '<input type="text" ix-type-string class="form-control"/>\n' +
+    '');
 }]);
 })();
 
@@ -127,7 +132,8 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('angular-inputex/directives/templates/textarea.html',
-    '<textarea ix-type-string></textarea>');
+    '<textarea ix-type-string class="form-control"></textarea>\n' +
+    '');
 }]);
 })();
 
@@ -139,7 +145,8 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('angular-inputex/directives/templates/uppercase.html',
-    '<input type="text" ix-type-string ix-uppercase />');
+    '<input type="text" ix-type-string ix-uppercase class="form-control"/>\n' +
+    '');
 }]);
 })();
 

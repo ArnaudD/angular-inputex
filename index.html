@@ -1,42 +1,50 @@
-<!doctype html><!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]--><!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]--><!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]--><!--[if gt IE 8]><!--><html class="no-js"><!--<![endif]--><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Angular InputEx</title><meta name="description" content=""><meta name="viewport" content="width=device-width"><!-- Place favicon.ico and apple-touch-icon.png in the root directory --><link rel="stylesheet" href="styles/29403685.vendor.css"><link rel="stylesheet" href="styles/794d7441.main.css"><link rel="stylesheet" href="styles/rainbow-theme-solarized-dark.css"><body ng-app="demoApp"><!--[if lt IE 7]>
+<!doctype html><!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]--><!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]--><!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]--><!--[if gt IE 8]><!--><html class="no-js"><!--<![endif]--><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Angular InputEx</title><meta name="description" content=""><meta name="viewport" content="width=device-width"><link href="http://fonts.googleapis.com/css?family=Roboto+Slab:400,300" rel="stylesheet" type="text/css"><!-- Place favicon.ico and apple-touch-icon.png in the root directory --><link rel="stylesheet" href="styles/29403685.vendor.css"><link rel="stylesheet" href="styles/def2e557.main.css"><body ng-app="demoApp"><!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]--><div class="header"><div class="container"><h1 class="text-muted">Angular InputEx</h1></div></div><div class="container"><script>function StringFieldController ($scope) {
-          $scope.fieldDefinition = {
-            "type": "string",
-            "label": "Nom",
-            "uppercase": true,
-            "value": "test",
-            "name": "lastname",
-            "maxLength": "10",
-            "minLength": "3",
-            "size": 40,
-            "required": true,
-            "trim": true
-          }
+    <![endif]--><div class="header"><div class="container"><h1>Angular InputEx</h1></div></div><div class="container"><div class="test-form" ng-controller="FormTestController"><h2>Form</h2><h3>Example</h3><div id="test-form-code"></div><script ix-example="#test-form-code">function FormTestController ($scope) {
+            // ix-example-start
+            $scope.fields = [{
+              type: "string",
+              label: "String field label",
+              name: "string",
+              maxLength: "40",
+              minLength: "3",
+              required: true,
+              trim: true
+            }, {
+              type: "uppercase",
+              label: "Uppercase field label",
+              name: "uppercase",
+              maxLength: "40",
+              minLength: "3",
+              required: true,
+              trim: true
+            }];
 
-          $scope.value = "world";
-        }</script><div class="row marketing" ng-controller="StringFieldController"><h2>String field</h2><pre><code data-language="js">
-          $scope.fieldDefinition = {
-            "type": "string",
-            "label": "Nom",
-            "uppercase": true,
-            "placeholder": "Nom",
-            "value": "test",
-            "name": "lastname",
-            "maxLength": "10",
-            "minLength": "3",
-            "size": 40,
-            "required": true,
-            "trim": true
-          }
+            $scope.values = {
+              'string':      'Default string value',
+              'uppercase':   'Default uppercase value',
+              'text':        'Default text value',
+              'select':      'Default select value',
+              'linkedcombo': 'Default linkedcombo value',
+              'boolean':     'Default boolean value',
+              'radio':       'Default radio value',
+              'integer':     'Default integer value',
+              'datesplit':   'Default datesplit value'
+            };
+            // ix-example-end
+          }</script><h3>Output</h3><div ix-example="#test-form-code" class="output"><form name="testForm2" ix-form="fields" ix-form-model="values"></form></div><h3>Live scope</h3><pre>values = {{ values | json }}</pre></div><div class="test-string-field" ng-controller="StringFieldController"><h2>Standalone field</h2><h3>Example</h3><script ix-example="">function StringFieldController ($scope) {
+            // ix-example-start
+            $scope.field = {
+              type: "string",
+              maxLength: "40",
+              minLength: "3",
+              required: true,
+              trim: true
+            };
 
-          $scope.value = "world";
-        </code></pre><pre><code data-language="404.html" ng-non-bindable="">
-          <form name="testForm">
-            <div ix-field="fieldDefinition" ix-model="value"></div>
-          </form>
-
-      </code></pre><form name="testForm"><div ix-field="fieldDefinition" ix-model="value"></div></form><p>Hello {{ value }}</p></div></div><!-- Google Analytics: change UA-XXXXX-X to be your site's ID --><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            $scope.value = 'Hello inputex';
+            // ix-example-end
+          }</script><pre><code data-language="404.html">&lt;div id="test-string-field-code"&gt;&lt;/div&gt;</code></pre><h3>Output</h3><div class="output"><div ix-field="field" ix-model="value"></div></div><h3>Live scope</h3><pre>value = {{ value | json }}</pre></div></div><!-- Google Analytics: change UA-XXXXX-X to be your site's ID --><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
@@ -45,4 +53,4 @@
        ga('send', 'pageview');</script><!--[if lt IE 9]>
     <script src="bower_components/es5-shim/es5-shim.js"></script>
     <script src="bower_components/json3/lib/json3.min.js"></script>
-    <![endif]--><script src="scripts/a1b36d04.vendor.js"></script><script src="bower_components/angular-inputex/dist/angular-inputex.js"></script><script src="bower_components/angular-inputex/dist/angular-inputex-templates.js"></script><script src="scripts/3e22fad0.scripts.js"></script><script src="scripts/vendors/rainbow.min.js"></script>
+    <![endif]--><script src="scripts/7f4b50b3.vendor.js"></script><script src="scripts/246d833a.scripts.js"></script>

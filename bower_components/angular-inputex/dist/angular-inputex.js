@@ -17,6 +17,7 @@ angular.module('ix', [
   'ix.filters'
 ]);
 
+
 angular.module('ix')
   .directive('ixField', function ($compile, $templateCache) {
 
@@ -26,9 +27,9 @@ angular.module('ix')
     };
 
     var linker = function (scope, element, attrs) {
-      var html = getTemplate(scope.field.type),
-          input = angular.element(html),
-          field = scope.field;
+      var field = scope.field,
+          html  = getTemplate(field.type),
+          input = angular.element(html);
 
       element.append(input);
       $compile(input)(scope);
@@ -40,7 +41,19 @@ angular.module('ix')
         field: '=ixField',
         model: '=ixModel'
       },
+      terminal: true,
+      priority: 1000,
       link: linker
+      // compile: function (element, attrs) {
+      //   return {
+      //     pre: function (scope, element, attrs) {
+
+      //     },
+      //     post: function (scope,element, attrs) {
+
+      //     }
+      //   }
+      // }
     };
   });
 
@@ -52,7 +65,7 @@ angular.module('ix')
       transclude: true,
       scope: {
         fields: '=ixForm',
-        model:  '=ixModel'
+        model:  '=ixFormModel'
       },
       templateUrl: 'angular-inputex/directives/templates/form.html'
     };
@@ -68,6 +81,8 @@ angular.module('ix')
       minLength:   ['attr', 'ng-minlength'],
       maxLength:   ['attr', 'ng-maxlength'],
       placeholder: ['attr', 'placeholder'],
+      uppercase:   ['attr', 'ix-uppercase'],
+      capitalize:  ['attr', 'ix-capitalize'],
       typeInvite:  ['attr', 'placeholder'],
       trim:        ['prop', 'ng-trim'],
       name:        ['attr', 'name'],
@@ -78,9 +93,10 @@ angular.module('ix')
     var compile = function (element, attrs) {
 
       element.removeAttr('ix-type-string');
+      attrs.$set('ngModel', 'model');
 
       return {
-        pre: function preLink(scope, element, attrs, controller) {
+        pre: function preLink(scope, element, attrs, modelCtrl) {
           var field = scope.field || scope.$parent.field;
 
           for (var key in propertiesTranslations) {
@@ -90,14 +106,13 @@ angular.module('ix')
             }
           }
                     
-          if (scope.model) {
-            element.attr('value', scope.model);
-          }
-          else if (field.hasOwnProperty('value')) {
-            scope.model = field.value;
-          }
+          // if (scope.model) {
+          //   attrs.$set('value', scope.model);
+          // }
+          // else if (field.hasOwnProperty('value')) {
+          //   scope.model = field.value;
+          // }
 
-          attrs.$set('ng-model', 'model');
         },
         post: function postLink(scope, element, attrs, controller) {
           $compile(element)(scope);
@@ -107,6 +122,7 @@ angular.module('ix')
 
     return {
       restrict: 'A',
+      // require: '^ngModel',
       terminal: true,
       priority: 1000,
       compile: compile
@@ -123,7 +139,7 @@ angular.module('ix')
           if (angular.isUndefined(inputValue)) {
             return;
           }
-          
+
           var capitalized = inputValue.charAt(0).toUpperCase() +
               inputValue.substring(1);
 
@@ -136,7 +152,7 @@ angular.module('ix')
         };
 
         modelCtrl.$parsers.push(capitalize);
-        capitalize(scope[attrs.ngModel]); // capitalize initial value
+        modelCtrl.$formatters.push(capitalize);
       }
     };
   });
@@ -151,18 +167,18 @@ angular.module('ix')
             return;
           }
 
-          var uppercased = inputValue.toUpperCase();
+          var uppercased = angular.uppercase(inputValue);
 
           if (uppercased !== inputValue) {
             modelCtrl.$setViewValue(uppercased);
             modelCtrl.$render();
           }
-          
+
           return uppercased;
         };
 
         modelCtrl.$parsers.push(uppercase);
-        uppercase(scope[attrs.ngModel]); // uppercase initial value
+        modelCtrl.$formatters.push(uppercase);
       }
     };
   });
