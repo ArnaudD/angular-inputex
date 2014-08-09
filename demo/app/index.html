@@ -9,16 +9,16 @@
     <title>Angular InputEx</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,300' rel='stylesheet' type='text/css'>
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css styles/vendor.css -->
     <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/sass-bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/rainbow/themes/solarized-light.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,app}) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
-    <link rel="stylesheet" href="styles/rainbow-theme-solarized-dark.css">
   </head>
   <body ng-app="demoApp">
     <!--[if lt IE 7]>
@@ -27,26 +27,38 @@
 
     <div class="header">
       <div class="container">
-        <h1 class="text-muted">Angular InputEx</h1>
+        <h1>Angular InputEx</h1>
       </div>
     </div>
 
     <div class="container">
 
       <div class="test-form" ng-controller="FormTestController">
-        <script>
+
+        <h2>Form</h2>
+
+        <h3>Example</h3>
+        <div id="test-form-code"></div>
+        <script ix-example="#test-form-code">
           function FormTestController ($scope) {
-            $scope.fields = [
-               { type: "string",      label: "Test string",      name: "string",      maxLength: "10", minLength: "3", size: 40, required: true, trim: true }
-              ,{ type: "uppercase",   label: "Test uppercase",   name: "uppercase",   maxLength: "10", minLength: "3", size: 40, required: true, trim: true }
-              // ,{ type: "text",        label: "Test text",        name: "text",        maxLength: "10", minLength: "3", size: 40, required: true, trim: true }
-              // ,{ type: "select",      label: "Test select",      name: "select",      maxLength: "10", minLength: "3", size: 40, required: true, trim: true }
-              // ,{ type: "linkedcombo", label: "Test linkedcombo", name: "linkedcombo", maxLength: "10", minLength: "3", size: 40, required: true, trim: true }
-              // ,{ type: "boolean",     label: "Test boolean",     name: "boolean",     maxLength: "10", minLength: "3", size: 40, required: true, trim: true }
-              // ,{ type: "radio",       label: "Test radio",       name: "radio",       maxLength: "10", minLength: "3", size: 40, required: true, trim: true }
-              // ,{ type: "integer",     label: "Test integer",     name: "integer",     maxLength: "10", minLength: "3", size: 40, required: true, trim: true }
-              // ,{ type: "datesplit",   label: "Test datesplit",   name: "datesplit",   maxLength: "10", minLength: "3", size: 40, required: true, trim: true }
-            ];
+            // ix-example-start
+            $scope.fields = [{
+              type: "string",
+              label: "String field label",
+              name: "string",
+              maxLength: "40",
+              minLength: "3",
+              required: true,
+              trim: true
+            }, {
+              type: "uppercase",
+              label: "Uppercase field label",
+              name: "uppercase",
+              maxLength: "40",
+              minLength: "3",
+              required: true,
+              trim: true
+            }];
 
             $scope.values = {
               'string':      'Default string value',
@@ -58,21 +70,53 @@
               'radio':       'Default radio value',
               'integer':     'Default integer value',
               'datesplit':   'Default datesplit value'
-            }
+            };
+            // ix-example-end
           }
         </script>
 
-        <h2>Test Form</h2>
+        <h3>Output</h3>
+        <div ix-example="#test-form-code" class="output">
+          <form name="testForm2" ix-form="fields" ix-form-model="values"></form>
+        </div>
 
-        <form name="testForm2" ix-form="fields" ix-form-model="values"></form>
-        <!-- <input type="text" ng-model="values.uppercase" ng-maxlength="10" ix-uppercase/> -->
-        <!-- <input type="text" ng-model="values.uppercase" ng-maxlength="10" /> -->
-
-        <p>Values: <pre>{{ values | json }}</pre></p>
+        <h3>Live scope</h3>
+        <pre>values = {{ values | json }}</pre>
 
       </div>
 
+      <div class="test-string-field" ng-controller="StringFieldController">
 
+        <h2>Standalone field</h2>
+
+        <h3>Example</h3>
+        <script ix-example>
+          function StringFieldController ($scope) {
+            // ix-example-start
+            $scope.field = {
+              type: "string",
+              maxLength: "40",
+              minLength: "3",
+              required: true,
+              trim: true
+            };
+
+            $scope.value = 'Hello inputex';
+            // ix-example-end
+          }
+        </script>
+        <pre><code data-language="html">&lt;div id="test-string-field-code"&gt;&lt;/div&gt;</code></pre>
+
+        <h3>Output</h3>
+        <div class="output">
+          <div ix-field="field" ix-model="value"></div>
+        </div>
+
+        <h3>Live scope</h3>
+        <pre>value = {{ value | json }}</pre>
+
+      </div>
+    </div>
 
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
@@ -98,17 +142,20 @@
     <script src="bower_components/sass-bootstrap/dist/js/bootstrap.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
-    <!-- endbower -->
-    <!-- endbuild -->
+    <script src="bower_components/rainbow/js/rainbow.js"></script>
+    <script src="bower_components/rainbow/js/language/html.js"></script>
+    <script src="bower_components/rainbow/js/language/javascript.js"></script>
+    <script src="bower_components/rainbow/js/language/generic.js"></script>
     <script src="bower_components/angular-inputex/dist/angular-inputex.js"></script>
     <script src="bower_components/angular-inputex/dist/angular-inputex-templates.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
 
-        <!-- build:js({.tmp,app}) scripts/scripts.js -->
-        <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/directives/ixCodeExample.js"></script>
-        <!-- endbuild -->
-        <script src="scripts/vendors/rainbow.min.js"></script>
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/directives/ixCodeExample.js"></script>
+    <!-- endbuild -->
 
 </body>
 </html>

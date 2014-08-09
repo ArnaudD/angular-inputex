@@ -1,24 +1,54 @@
 $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
 
-@import 'sass-bootstrap/lib/bootstrap';
+$container-desktop: 750px;
+$container-large-desktop: 750px;
+$font-family-sans-serif: 'Roboto Slab', sans-serif;
+
+@import 'bootstrap-custom';
 
 body {
-    padding-top: 20px;
-    padding-bottom: 20px;
+  background: #ECF0F1; //#F77442;
+  padding: 0;
 }
 
-code {
-    // Fix bootstrap overriding the close css class
-    .close {
-        opacity: inherit;
-        font-size: inherit;
-        text-shadow: inherit;
-        float: none;
-        color: #859900;
-        font-weight: normal;
-    }
+h1 {
+  text-align: center;
+  color: white;
+  font-weight: 300;
+  margin: 40px 0;
+}
+
+h2 {
+  color: rgba(black, .72);
+  border-bottom: 1px solid rgba(black, .11);
+  padding-bottom: 10px;
+}
+
+h3 {
+  color: rgba(black, .56);
+}
+
+.header {
+  background: #6C7A89;
+}
+
+pre {
+  font-size: 12px;
+  margin: 0;
+  background: transparent;
 }
 
 input[type=text].ng-invalid {
   border-color: #FF7C7C;
+}
+
+.scope-wrapper,
+.code-wrapper,
+.output-wrapper {
+  padding: 15px 0;
+}
+
+.output,
+pre {
+  padding: 15px;
 }
