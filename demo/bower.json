@@ -9,6 +9,7 @@
     "sass-bootstrap": "~3.0.2",
     "angular-sanitize": "~1.2",
     "angular-route": "~1.2",
+    "rainbow": "master",
     "angular-inputex": "0.0.0"
   },
   "devDependencies": {
