@@ -2,18 +2,19 @@
 angular.module('ix')
   .directive('ixField', function ($compile, $templateCache) {
 
-    var getTemplate = function (contentType) {
-      var template = 'angular-inputex/directives/templates/' + contentType + '.html';
-      return $templateCache.get(template);
-    };
-
     var linker = function (scope, element, attrs) {
       var field = scope.field,
-          html  = getTemplate(field.type),
-          input = angular.element(html);
+          input = $templateCache.get('angular-inputex/directives/templates/' + field.type + '.html'),
+          msg   = $templateCache.get('angular-inputex/directives/templates/messages.html');
 
+      input = angular.element(input);
       element.append(input);
       $compile(input)(scope);
+
+      scope.fieldErrors = input.controller('ngModel').$error;
+      msg = angular.element(msg);
+      element.append(msg);
+      $compile(msg)(scope);
     };
 
     return {
