@@ -1,0 +1,6 @@
+<select class="form-control"
+  ng-options="choice.value as choice.label for choice in field.choices"
+  ng-required="field.required"
+  ng-model="model"
+  name="{{ field.name }}"
+></select>
