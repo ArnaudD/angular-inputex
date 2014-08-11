@@ -58,13 +58,23 @@
               minLength: "3",
               required: true,
               trim: true
-            }];
+            }, {
+              type: "select",
+              label: "Select field label",
+              required: true,
+              name: "select",
+              choices: [
+                { value: 'choice_1_value', label: 'Choice 1' },
+                { value: 'choice_2_value', label: 'Choice 2' }
+              ],
+            }
+            ];
 
             $scope.values = {
               'string':      'Default string value',
               'uppercase':   'Default uppercase value',
               'text':        'Default text value',
-              'select':      'Default select value',
+              'select':      'choice_2_value',
               'linkedcombo': 'Default linkedcombo value',
               'boolean':     'Default boolean value',
               'radio':       'Default radio value',
