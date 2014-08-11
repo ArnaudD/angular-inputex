@@ -1,6 +1,23 @@
 angular-inputex
 ===============
 
-Build with `gulp watch`
+## Build
 
-Launch demo with `grunt serve` in the demo folder
+```
+npm install
+gulp # or gulp watch
+```
+
+
+## Launch demo
+
+```
+bower link
+cd demo
+npm install
+bower install
+bower link angular-inputex
+grunt serve
+```
+
+
