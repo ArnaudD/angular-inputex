@@ -16,7 +16,7 @@ var paths = {
   dist: 'dist'
 };
 
-gulp.task('build', function() {
+gulp.task('build-js', function() {
   gulp.src(paths.js)
     // lint
     .pipe(jshint('.jshintrc'))
@@ -32,7 +32,7 @@ gulp.task('build', function() {
     .pipe(livereload(server));
 });
 
-gulp.task('templates', function() {
+gulp.task('build-html', function() {
   gulp.src(paths.html)
     .pipe(html2js({
       moduleName: 'ix.templates',
@@ -55,11 +55,11 @@ gulp.task('listen', function(next) {
   });
 });
 
-gulp.task('watch', function () {
-  gulp.watch(paths.js,   ['build']);
-  gulp.watch(paths.html, ['templates']);
+gulp.task('watch', ['build-js', 'build-html'], function () {
+  gulp.watch(paths.js,   ['build-js']);
+  gulp.watch(paths.html, ['build-html']);
 });
 
 gulp.task('serve', ['watch'], serve('demo'));
 
-gulp.task('default', ['templates', 'build']);
+gulp.task('default', ['build-html', 'build-js']);
