@@ -19,10 +19,13 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('angular-inputex/directives/templates/checkbox.html',
-    '<div ng-repeat="choice in field.choices" ng-form name="checkboxSubForm">\n' +
-    '  <input type="checkbox" ix-type-checkbox id="todo" value="choice.value"/>\n' +
-    '  <label for="todo">{{ choice.label }}</label>\n' +
-    '</div>');
+    '<div class="checkbox">\n' +
+    '  <label>\n' +
+    '    <input type="checkbox" ix-type-checkbox ng-model="model" ng-true-value="{{ field.sentValues[0] || true }}" ng-false-value="{{ field.sentValues[1] || false }}" />\n' +
+    '    {{ field.rightLabel }}\n' +
+    '  </label>\n' +
+    '</div>\n' +
+    '');
 }]);
 })();
 
@@ -122,7 +125,7 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('angular-inputex/directives/templates/select.html',
-    '<select\n' +
+    '<select class="form-control"\n' +
     '  ng-options="choice.value as choice.label for choice in field.choices"\n' +
     '  ng-required="field.required"\n' +
     '  ng-model="model"\n' +
@@ -153,7 +156,7 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('angular-inputex/directives/templates/textarea.html',
-    '<textarea ix-type-string class="form-control"></textarea>\n' +
+    '<textarea ix-type-string rows="{{ field.rows }}" class="form-control"></textarea>\n' +
     '');
 }]);
 })();

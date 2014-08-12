@@ -21,19 +21,29 @@ angular.module('ix', [
 angular.module('ix')
   .directive('ixField', function ($compile, $templateCache) {
 
+    var aliases = {
+      'text': 'textarea',
+      'boolean': 'checkbox'
+    };
+
     var linker = function (scope, element, attrs) {
       var field = scope.field,
-          input = $templateCache.get('angular-inputex/directives/templates/' + field.type + '.html'),
-          msg   = $templateCache.get('angular-inputex/directives/templates/messages.html');
+          type  = aliases[field.type] || field.type,
+          input = $templateCache.get('angular-inputex/directives/templates/' + type + '.html'),
+          msg   = $templateCache.get('angular-inputex/directives/templates/messages.html'),
+          controller;
 
       input = angular.element(input);
       element.append(input);
       $compile(input)(scope);
 
-      scope.fieldErrors = input.controller('ngModel').$error;
-      msg = angular.element(msg);
-      element.append(msg);
-      $compile(msg)(scope);
+      controller = input.controller('ngModel');
+      if (controller)  {
+        scope.fieldErrors = controller.$error;
+        msg = angular.element(msg);
+        element.append(msg);
+        $compile(msg)(scope);
+      }
     };
 
     return {
