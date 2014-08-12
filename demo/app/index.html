@@ -84,7 +84,16 @@
               choices: [
                 { value: 'choice_1_value', label: 'Choice 1' },
                 { value: 'choice_2_value', label: 'Choice 2' }
-              ],
+              ]
+            }, {
+              type: "linkedcombo",
+              label: "Combo field label",
+              required: true,
+              name: "linkedcombo",
+              choices: [
+                { value: 'choice_1_value', label: 'Choice 1', choices: ['Subchoice 1.1', 'Subchoice 1.2'] },
+                { value: 'choice_2_value', label: 'Choice 2', choices: ['Subchoice 2.1', 'Subchoice 2.2'] }
+              ]
             }, {
               type: "radio",
               label: "Radio field label",
