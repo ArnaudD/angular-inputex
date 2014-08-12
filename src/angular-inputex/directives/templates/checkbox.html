@@ -1,4 +1,6 @@
-<div ng-repeat="choice in field.choices" ng-form name="checkboxSubForm">
-  <input type="checkbox" ix-type-checkbox id="todo" value="choice.value"/>
-  <label for="todo">{{ choice.label }}</label>
+<div class="checkbox">
+  <label>
+    <input type="checkbox" ix-type-checkbox ng-model="model" ng-true-value="{{ field.sentValues[0] || true }}" ng-false-value="{{ field.sentValues[1] || false }}" />
+    {{ field.rightLabel }}
+  </label>
 </div>
