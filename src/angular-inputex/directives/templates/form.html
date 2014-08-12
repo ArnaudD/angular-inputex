@@ -2,7 +2,7 @@
 <div class="ix-form form">
 
   <div class="ix-field-wrapper form-group" ng-repeat="field in fields" ng-form name="subForm">
-    <label for="ix-{{ field.name }}" class="control-label">{{ field.label }}</label>
+    <label for="ix-{{ field.name }}" class="control-label">{{ field.label }} <span class="required-asterisk" ng-if="field.required">*</span></label>
     <div ix-field="field" ix-model="model[field.name]"></div>
   </div>
 
