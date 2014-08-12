@@ -46,18 +46,36 @@
               type: "string",
               label: "String field label",
               name: "string",
-              maxLength: "40",
-              minLength: "3",
+              maxLength: 40,
+              minLength: 3,
               required: true,
               trim: true
             }, {
               type: "uppercase",
               label: "Uppercase field label",
               name: "uppercase",
-              maxLength: "40",
-              minLength: "3",
+              maxLength: 40,
+              minLength: 3,
               required: true,
               trim: true
+            }, {
+              type: "text", // or 'textarea'
+              label: "Textarea field label",
+              name: "text",
+              maxLength: 40,
+              minLength: 3,
+              rows: 5,
+              required: true,
+              trim: true
+            }, {
+              type: "integer",
+              label: "Integer field label",
+              name: "integer",
+              maxLength: 4,
+              minLength: 2,
+              min: 10,
+              max: 9999,
+              required: true
             }, {
               type: "select",
               label: "Select field label",
@@ -68,32 +86,38 @@
                 { value: 'choice_2_value', label: 'Choice 2' }
               ],
             }, {
-              type: "text", // or 'textarea'
-              label: "Textarea field label",
-              name: "text",
-              maxLength: "40",
-              minLength: "3",
-              rows: 5,
-              required: true,
-              trim: true
+              type: "radio",
+              label: "Radio field label",
+              name: "radio",
+              choices: [
+                { value: 'radio_1_value', label: 'Radio 1' },
+                { value: 'radio_2_value', label: 'Radio 2' }
+              ],
             }, {
               type: "boolean", // or 'checkbox'
               label: "Boolean field label",
               name: "boolean",
               rightLabel: 'Check me ?',
               sentValues: ['Yes', 'No']
+            }, {
+              type: "datesplit", // or date
+              label: "Date field label",
+              name: "date",
+              min: '2013-09-13',
+              min: '2013-09-15',
+              required: true
             }];
 
             $scope.values = {
               'string':      'Default string value',
               'uppercase':   'Default uppercase value',
               'text':        'Default textarea value',
+              'integer':     15,
               'select':      'choice_2_value',
+              'radio':       'radio_2_value',
               'boolean':     'Yes',
+              'date':        '2013-09-13',
               'linkedcombo': 'Default linkedcombo value',
-              'radio':       'Default radio value',
-              'integer':     'Default integer value',
-              'datesplit':   'Default datesplit value'
             };
             // ix-example-end
           }
