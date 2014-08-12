@@ -1,0 +1,6 @@
+<div class="radio" ng-repeat="choice in field.choices">
+  <label>
+    <input type="radio" name="{{ field.name }}" ng-model="$parent.model" value="{{ choice.value }}">
+    {{ choice.label }}
+  </label>
+</div>
