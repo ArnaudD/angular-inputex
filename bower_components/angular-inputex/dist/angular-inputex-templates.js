@@ -36,6 +36,25 @@ try {
   module = angular.module('ix.templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('angular-inputex/directives/templates/date.html',
+    '<input\n' +
+    '  type="date"\n' +
+    '  ng-model="model"\n' +
+    '  ng-required="field.required"\n' +
+    '  min="{{ field.min || NaN }}"\n' +
+    '  max="{{ field.max || NaN }}"\n' +
+    '  class="form-control" />\n' +
+    '');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('ix.templates');
+} catch (e) {
+  module = angular.module('ix.templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
   $templateCache.put('angular-inputex/directives/templates/email.html',
     '<input type="email" ix-type-string ix-type-email class="form-control"/>\n' +
     '');
@@ -54,7 +73,7 @@ module.run(['$templateCache', function($templateCache) {
     '<div class="ix-form form">\n' +
     '\n' +
     '  <div class="ix-field-wrapper form-group" ng-repeat="field in fields" ng-form name="subForm">\n' +
-    '    <label for="ix-{{ field.name }}" class="control-label">{{ field.label }}</label>\n' +
+    '    <label for="ix-{{ field.name }}" class="control-label">{{ field.label }} <span class="required-asterisk" ng-if="field.required">*</span></label>\n' +
     '    <div ix-field="field" ix-model="model[field.name]"></div>\n' +
     '  </div>\n' +
     '\n' +
@@ -74,6 +93,19 @@ try {
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('angular-inputex/directives/templates/hidden.html',
     '<input type="hidden" ix-type-string />');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('ix.templates');
+} catch (e) {
+  module = angular.module('ix.templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('angular-inputex/directives/templates/integer.html',
+    '<input type="number" ix-type-string min="{{ field.min || NaN }}" max="{{ field.max || NaN }}" class="form-control"/>\n' +
+    '');
 }]);
 })();
 
@@ -113,6 +145,12 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('angular-inputex/directives/templates/radio.html',
+    '<div class="radio" ng-repeat="choice in field.choices">\n' +
+    '  <label>\n' +
+    '    <input type="radio" name="{{ field.name }}" ng-model="$parent.model" value="{{ choice.value }}">\n' +
+    '    {{ choice.label }}\n' +
+    '  </label>\n' +
+    '</div>\n' +
     '');
 }]);
 })();

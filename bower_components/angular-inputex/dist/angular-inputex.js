@@ -23,7 +23,8 @@ angular.module('ix')
 
     var aliases = {
       'text': 'textarea',
-      'boolean': 'checkbox'
+      'boolean': 'checkbox',
+      'datesplit': 'date'
     };
 
     var linker = function (scope, element, attrs) {
