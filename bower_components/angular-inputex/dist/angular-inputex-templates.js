@@ -122,6 +122,12 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('angular-inputex/directives/templates/select.html',
+    '<select\n' +
+    '  ng-options="choice.value as choice.label for choice in field.choices"\n' +
+    '  ng-required="field.required"\n' +
+    '  ng-model="model"\n' +
+    '  name="{{ field.name }}"\n' +
+    '></select>\n' +
     '');
 }]);
 })();

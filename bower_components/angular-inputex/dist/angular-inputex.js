@@ -106,14 +106,6 @@ angular.module('ix')
               element[value[0]](value[1], field[key]);
             }
           }
-                    
-          // if (scope.model) {
-          //   attrs.$set('value', scope.model);
-          // }
-          // else if (field.hasOwnProperty('value')) {
-          //   scope.model = field.value;
-          // }
-
         },
         post: function postLink(scope, element, attrs, controller) {
           $compile(element)(scope);
