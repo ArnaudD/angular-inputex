@@ -44,7 +44,16 @@
               choices: [
                 { value: 'choice_1_value', label: 'Choice 1' },
                 { value: 'choice_2_value', label: 'Choice 2' }
-              ],
+              ]
+            }, {
+              type: "linkedcombo",
+              label: "Combo field label",
+              required: true,
+              name: "linkedcombo",
+              choices: [
+                { value: 'choice1', label: 'Choice 1', choices: ['Subchoice 1.1', 'Subchoice 1.2'] },
+                { value: 'choice2', label: 'Choice 2', choices: ['Subchoice 2.1', 'Subchoice 2.2'] }
+              ]
             }, {
               type: "radio",
               label: "Radio field label",
@@ -77,7 +86,7 @@
               'radio':       'radio_2_value',
               'boolean':     'Yes',
               'date':        '2013-09-13',
-              'linkedcombo': 'Default linkedcombo value',
+              'linkedcombo': 'choice2_Subchoice 2.2',
             };
             // ix-example-end
           }</script><h3>Output</h3><div ix-example="#test-form-code" class="output"><form name="testForm2" ix-form="fields" ix-form-model="values"></form></div><h3>Live scope</h3><pre>values = {{ values | json }}</pre></div><div class="test-string-field" ng-controller="StringFieldController"><h2>Standalone field</h2><h3>Example</h3><script ix-example="">function StringFieldController ($scope) {
@@ -101,4 +110,4 @@
        ga('send', 'pageview');</script><!--[if lt IE 9]>
     <script src="bower_components/es5-shim/es5-shim.js"></script>
     <script src="bower_components/json3/lib/json3.min.js"></script>
-    <![endif]--><script src="scripts/02259839.vendor.js"></script><script src="scripts/ea474bb7.scripts.js"></script>
+    <![endif]--><script src="scripts/4ada539e.vendor.js"></script><script src="scripts/ea474bb7.scripts.js"></script>

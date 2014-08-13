@@ -72,7 +72,7 @@ module.run(['$templateCache', function($templateCache) {
     '\n' +
     '<div class="ix-form form">\n' +
     '\n' +
-    '  <div class="ix-field-wrapper form-group" ng-repeat="field in fields" ng-form name="subForm">\n' +
+    '  <div class="ix-field-wrapper form-group" ng-repeat="field in fields" name="subForm">\n' +
     '    <label for="ix-{{ field.name }}" class="control-label">{{ field.label }} <span class="required-asterisk" ng-if="field.required">*</span></label>\n' +
     '    <div ix-field="field" ix-model="model[field.name]"></div>\n' +
     '  </div>\n' +
@@ -105,6 +105,43 @@ try {
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('angular-inputex/directives/templates/integer.html',
     '<input type="number" ix-type-string min="{{ field.min || NaN }}" max="{{ field.max || NaN }}" class="form-control"/>\n' +
+    '');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('ix.templates');
+} catch (e) {
+  module = angular.module('ix.templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('angular-inputex/directives/templates/linkedcombo-selects.html',
+    '\n' +
+    '  <select class="form-control"\n' +
+    '    ng-options="choice.value as choice.label for choice in firstSelectChoices"\n' +
+    '    ng-model="firstSelect"\n' +
+    '  ></select>\n' +
+    '\n' +
+    '  <select class="form-control"\n' +
+    '    ng-options="choice for choice in secondSelectChoices"\n' +
+    '    ng-model="secondSelect"\n' +
+    '    name="{{ field.name }}"\n' +
+    '    ng-show="firstSelect"\n' +
+    '  ></select>\n' +
+    '');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('ix.templates');
+} catch (e) {
+  module = angular.module('ix.templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('angular-inputex/directives/templates/linkedcombo.html',
+    '<div ng-model="model" ix-linkedcombo="field" required="{{ field.required }}"></div>\n' +
     '');
 }]);
 })();

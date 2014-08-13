@@ -19,7 +19,7 @@ angular.module('ix', [
 
 
 angular.module('ix')
-  .directive('ixField', function ($compile, $templateCache) {
+  .directive('ixField', function ($compile, $templateCache, $timeout) {
 
     var aliases = {
       'text': 'textarea',
@@ -38,13 +38,18 @@ angular.module('ix')
       element.append(input);
       $compile(input)(scope);
 
-      controller = input.controller('ngModel');
-      if (controller)  {
-        scope.fieldErrors = controller.$error;
-        msg = angular.element(msg);
-        element.append(msg);
-        $compile(msg)(scope);
-      }
+      msg = angular.element(msg);
+      element.append(msg);
+      $compile(msg)(scope);
+
+      // TODO : fix this !
+      // input.controller('ngModel') is undefined at link time
+      $timeout(function () {
+        var controller = input.controller('ngModel');
+        if (controller)  {
+          scope.fieldErrors = controller.$error;
+        }
+      }, 0);
     };
 
     return {
@@ -54,18 +59,8 @@ angular.module('ix')
         model: '=ixModel'
       },
       terminal: true,
-      priority: 1000,
+      // priority: 1000,
       link: linker
-      // compile: function (element, attrs) {
-      //   return {
-      //     pre: function (scope, element, attrs) {
-
-      //     },
-      //     post: function (scope,element, attrs) {
-
-      //     }
-      //   }
-      // }
     };
   });
 
@@ -83,6 +78,64 @@ angular.module('ix')
     };
   });
 
+
+
+angular.module('ix')
+  .directive('ixLinkedcombo', function ($compile) {
+
+    return {
+      restrict: 'A',
+      require: 'ngModel',
+      templateUrl: 'angular-inputex/directives/templates/linkedcombo-selects.html',
+      scope: {
+        field: '=ixLinkedcombo'
+      },
+      link: function (scope, element, attrs, ngModelCtrl) {
+        scope.firstSelectChoices = scope.field.choices;
+
+        scope.$watch('firstSelect', function () {
+          var choices = scope.field.choices,
+              l = choices.length,
+              i = 0;
+
+          for (; i < l; i++) {
+            if (choices[i].value === scope.firstSelect) {
+              scope.secondSelectChoices = choices[i].choices;
+              ngModelCtrl.$setViewValue(undefined);
+              return;
+            }
+          }
+        });
+
+        scope.$watch('secondSelect', function () {
+          ngModelCtrl.$setViewValue(scope.secondSelect ? [scope.firstSelect, scope.secondSelect] : undefined);
+        });
+
+        ngModelCtrl.$parsers.unshift(function (value) {
+          // console.log('parse', value);
+          return value ? value[0] + '_' +  value[1] : undefined;
+        });
+
+        ngModelCtrl.$formatters.unshift(function (value) {
+          // console.log('format', value);
+          return value ? value.split('_') : undefined;
+        });
+
+        ngModelCtrl.$render = function () {
+          if (ngModelCtrl.$viewValue) {
+            scope.firstSelect  = ngModelCtrl.$viewValue[0];
+            scope.secondSelect = ngModelCtrl.$viewValue[1];
+          }
+          else {
+            scope.firstSelect  = undefined;
+            scope.secondSelect = undefined;
+          }
+        };
+
+      }
+    };
+
+  });
 
 
 angular.module('ix')
