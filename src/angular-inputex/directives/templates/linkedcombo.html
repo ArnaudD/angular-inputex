@@ -1,13 +1,1 @@
-<select class="form-control"
-  ng-options="choice.label for choice in field.choices"
-  ng-required="field.required"
-  ng-model="root_model"
-></select>
-
-<select class="form-control"
-  ng-options="choice for choice in root_model.choices"
-  ng-required="field.required"
-  ng-model="model"
-  name="{{ field.name }}"
-  ng-show="root_model"
-></select>
+<div ng-model="model" ix-linkedcombo="field" required="{{ field.required }}"></div>

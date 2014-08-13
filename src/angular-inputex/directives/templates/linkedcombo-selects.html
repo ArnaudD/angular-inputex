@@ -1,0 +1,12 @@
+
+  <select class="form-control"
+    ng-options="choice.value as choice.label for choice in firstSelectChoices"
+    ng-model="firstSelect"
+  ></select>
+
+  <select class="form-control"
+    ng-options="choice for choice in secondSelectChoices"
+    ng-model="secondSelect"
+    name="{{ field.name }}"
+    ng-show="firstSelect"
+  ></select>

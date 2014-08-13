@@ -1,6 +1,6 @@
 
 angular.module('ix')
-  .directive('ixField', function ($compile, $templateCache) {
+  .directive('ixField', function ($compile, $templateCache, $timeout) {
 
     var aliases = {
       'text': 'textarea',
@@ -19,13 +19,18 @@ angular.module('ix')
       element.append(input);
       $compile(input)(scope);
 
-      controller = input.controller('ngModel');
-      if (controller)  {
-        scope.fieldErrors = controller.$error;
-        msg = angular.element(msg);
-        element.append(msg);
-        $compile(msg)(scope);
-      }
+      msg = angular.element(msg);
+      element.append(msg);
+      $compile(msg)(scope);
+
+      // TODO : fix this !
+      // input.controller('ngModel') is undefined at link time
+      $timeout(function () {
+        var controller = input.controller('ngModel');
+        if (controller)  {
+          scope.fieldErrors = controller.$error;
+        }
+      }, 0);
     };
 
     return {
@@ -35,17 +40,7 @@ angular.module('ix')
         model: '=ixModel'
       },
       terminal: true,
-      priority: 1000,
+      // priority: 1000,
       link: linker
-      // compile: function (element, attrs) {
-      //   return {
-      //     pre: function (scope, element, attrs) {
-
-      //     },
-      //     post: function (scope,element, attrs) {
-
-      //     }
-      //   }
-      // }
     };
   });
