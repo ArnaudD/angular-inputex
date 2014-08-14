@@ -13,6 +13,7 @@ var gulp       = require('gulp'),
 var paths = {
   js:   'src/**/*.js',
   html: 'src/angular-inputex/directives/templates/*.html',
+  i18n: 'src/angular-inputex/i18n/*_*.json',
   dist: 'dist'
 };
 
@@ -48,6 +49,18 @@ gulp.task('build-html', function() {
     .pipe(livereload(server));
 });
 
+gulp.task('build-i18n', function() {
+  gulp.src(paths.i18n)
+    .pipe(rename({prefix: 'angular-inputex-'}))
+    .pipe(gulp.dest(paths.dist))
+    // uglify
+    // .pipe(uglify())
+    // .pipe(rename({suffix: '-min'}))
+    // .pipe(gulp.dest(paths.dist))
+    // livereload
+    .pipe(livereload(server));
+});
+
 gulp.task('listen', function(next) {
   server.listen(35729, function(err) {
     if (err) return console.error(err);
@@ -55,11 +68,12 @@ gulp.task('listen', function(next) {
   });
 });
 
-gulp.task('watch', ['build-js', 'build-html'], function () {
+gulp.task('watch', ['build-js', 'build-html', 'build-i18n'], function () {
   gulp.watch(paths.js,   ['build-js']);
   gulp.watch(paths.html, ['build-html']);
+  gulp.watch(paths.i18n, ['build-i18n']);
 });
 
 gulp.task('serve', ['watch'], serve('demo'));
 
-gulp.task('default', ['build-html', 'build-js']);
+gulp.task('default', ['build-html', 'build-i18n', 'build-js']);

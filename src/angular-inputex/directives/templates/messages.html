@@ -1,3 +1,5 @@
 <ul class="error-messages">
-  <li ng-repeat="(key, value) in fieldErrors" ng-if="value">{{ key }}</li>
+  <li ng-repeat="(key, value) in fieldErrors" ng-if="value">
+    <ix-error ix-field-options="field" ix-model="model" ix-error="key"></ix-error>
+  </li>
 </ul>

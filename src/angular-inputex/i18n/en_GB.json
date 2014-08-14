@@ -1,0 +1,12 @@
+{
+  "ERRORS": {
+    "DEFAULTS": {
+      "required":  "This field is required",
+      "minlength": "This field must be at least {{ field.minLength }} characters long",
+      "maxlength": "This field can't be more than {{ field.maxLength }} characters long",
+      "min":       "Please enter a value greater than {{ field.min }}",
+      "max":       "Please enter a value lower than {{ field.max }}"
+    },
+    "DEFAULT": "This field is invalid"
+  }
+}
