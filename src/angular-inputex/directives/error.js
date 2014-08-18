@@ -26,9 +26,8 @@ angular.module('ix')
             'ERRORS.DEFAULT'
           ];
 
-          for(; i < 3; i++) {
+          for (; i < 3; i++) {
             msg = $translate.instant(keys[i], scope);
-              console.log(keys[i], msg);
             if (msg && msg !== '' && msg !== keys[i]) {
               scope.message = msg;
               break;

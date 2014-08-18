@@ -4,7 +4,7 @@ angular.module('demoApp')
   .directive('code', function () {
     return {
       restrict: 'A',
-      link: function postLink(scope, element, attrs) {
+      link: function postLink(/*scope, element, attrs*/) {
         // element.text(element.html());
       }
     };
@@ -34,9 +34,9 @@ angular.module('demoApp')
         content = content.replace(/^(\n *\n|( *\n))*/g, '');
         indentation = content.search(/[^ ]/);
 
-        if (attrs['ixExample']) {
-          container = angular.element(attrs['ixExample']);
-          method = 'append'
+        if (attrs.ixExample) {
+          container = angular.element(attrs.ixExample);
+          method = 'append';
         }
         else {
           container = element;
