@@ -68,6 +68,18 @@ try {
   module = angular.module('ix.templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('angular-inputex/directives/templates/error.html',
+    '{{ message }}');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('ix.templates');
+} catch (e) {
+  module = angular.module('ix.templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
   $templateCache.put('angular-inputex/directives/templates/form.html',
     '\n' +
     '<div class="ix-form form">\n' +
@@ -155,7 +167,9 @@ try {
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('angular-inputex/directives/templates/messages.html',
     '<ul class="error-messages">\n' +
-    '  <li ng-repeat="(key, value) in fieldErrors" ng-if="value">{{ key }}</li>\n' +
+    '  <li ng-repeat="(key, value) in fieldErrors" ng-if="value">\n' +
+    '    <ix-error ix-field-options="field" ix-model="model" ix-error="key"></ix-error>\n' +
+    '  </li>\n' +
     '</ul>\n' +
     '');
 }]);
